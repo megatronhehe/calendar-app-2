@@ -17,7 +17,7 @@ const PriorityActivitiesCard = ({
 
 	return (
 		<li
-			className={`flex flex-col items-center justify-between flex-shrink-0 h-24 p-2 w-36 rounded-xl ${backgroundColor} `}
+			className={`flex flex-col items-center sm:w-full justify-between flex-shrink-0 h-24 p-2 w-36 rounded-xl ${backgroundColor} `}
 		>
 			<h2 className="flex items-center gap-1">
 				<PiFireSimpleFill className={`text-xl ${iconColor}`} /> {priority}{" "}

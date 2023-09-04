@@ -21,12 +21,16 @@ const Activities = () => {
 
 	return (
 		<>
-			<section className="flex flex-col w-full h-full max-w-3xl ">
-				<ActivitiesHeader />
+			<section className="flex flex-col w-full h-full max-w-3xl sm:items-center sm:flex-row ">
+				<div className="sm:w-2/5">
+					<ActivitiesHeader />
+				</div>
 
-				<ActivitiesWeekdays />
+				<div className="overflow-hidden sm:w-3/5">
+					<ActivitiesWeekdays />
 
-				<ActivitiesList setToggleModal={setToggleModal} />
+					<ActivitiesList setToggleModal={setToggleModal} />
+				</div>
 			</section>
 
 			<AnimatePresence>

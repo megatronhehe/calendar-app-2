@@ -19,7 +19,7 @@ const ActivitiesToDateCard = ({
 		: 0;
 
 	return (
-		<li className="flex flex-col items-center justify-between flex-shrink-0 h-24 p-2 bg-gray-800 w-36 rounded-xl ">
+		<li className="flex flex-col items-center justify-between flex-shrink-0 h-24 p-2 bg-gray-800 w-36 rounded-xl sm:w-full">
 			<h2>Activities to date</h2>
 			<span className="text-xl">
 				{isLoading.fetching ? (

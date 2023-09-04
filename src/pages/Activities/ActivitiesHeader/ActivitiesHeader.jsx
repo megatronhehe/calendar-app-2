@@ -23,7 +23,7 @@ const ActivitiesHeader = () => {
 	const activitiesToDateCount = activitiesToDate.length;
 
 	return (
-		<section className="bg-white rounded-b-2xl ">
+		<section className="bg-white rounded-b-2xl sm:rounded-2xl">
 			<div className="p-4">
 				<h1 className="text-2xl">Good morning</h1>
 
@@ -32,7 +32,7 @@ const ActivitiesHeader = () => {
 				</span>
 			</div>
 
-			<ul className="flex gap-2 p-2 mt-4 overflow-auto text-sm text-gray-100 ">
+			<ul className="flex gap-2 p-2 overflow-auto text-sm text-gray-100 sm:flex-col">
 				<ActivitiesToDateCard
 					activitiesToDateExist={activitiesToDateExist}
 					activitiesToDate={activitiesToDate}

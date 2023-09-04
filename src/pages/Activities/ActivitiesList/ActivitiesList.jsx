@@ -57,7 +57,7 @@ const ActivitiesList = ({ setToggleModal }) => {
 				</ul>
 			</div>
 
-			<ul className="flex flex-col gap-2 mt-4 overflow-auto text-gray-800 h-3/4 sm:h-96">
+			<ul className="flex flex-col gap-2 mt-4 overflow-auto text-gray-800 h-3/5 sm:h-96">
 				{isLoading.fetching ? (
 					<ExceptionMessage message={"Loading ..."} />
 				) : activitiesError.length > 0 ? (
