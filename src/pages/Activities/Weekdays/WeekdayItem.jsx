@@ -15,8 +15,8 @@ const WeekdayItem = ({ date }) => {
 		isSameDay(parseISO(activity.date), date)
 	);
 
-	const activitiesDoneInThisDate = activities.filter(
-		(activity) => activity.isDone
+	const activitiesDoneInThisDate = activitiesInThisDate.filter(
+		(activity) => activity.isDone === true
 	);
 
 	const isActivitiesExistInThisDate =
@@ -53,9 +53,7 @@ const WeekdayItem = ({ date }) => {
 				) : (
 					<PiDiamondFill className="absolute text-blue-400 -bottom-2" />
 				)
-			) : (
-				""
-			)}
+			) : null}
 		</li>
 	);
 };

@@ -15,6 +15,14 @@
       "priority": "low",
       "type": "chores",
       "isDone": false
+    },
+    {
+      "id": "0cb7f39c-5556-43cc-a1fa-cc4f703f9a07",
+      "name": "test",
+      "date": "2023-09-05",
+      "priority": "high",
+      "type": "chores",
+      "isDone": false
     }
   ]
 }

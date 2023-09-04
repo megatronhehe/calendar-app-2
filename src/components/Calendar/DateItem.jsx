@@ -14,7 +14,7 @@ const DateItem = ({ date }) => {
 		isSameDay(parseISO(activity.date), date)
 	);
 
-	const activitiesDoneInThisDate = activities.filter(
+	const activitiesDoneInThisDate = activitiesInThisDate.filter(
 		(activity) => activity.isDone
 	);
 
