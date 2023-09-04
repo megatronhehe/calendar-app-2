@@ -8,7 +8,7 @@ import { PiCaretLeftLight, PiCaretRightLight } from "react-icons/pi";
 import { endOfMonth, startOfMonth, startOfWeek, endOfWeek } from "date-fns";
 import DateItem from "./dateItem";
 
-const Calendar = () => {
+const Calendar = ({ setToggleCalendar }) => {
 	const { today, setToday } = useContext(DateContext);
 
 	const firstDateInMonth = startOfWeek(startOfMonth(today));
@@ -32,8 +32,14 @@ const Calendar = () => {
 	));
 
 	return (
-		<section className="fixed bottom-0 left-0 flex items-end justify-center w-full h-full bg-opacity-20 backdrop-filter backdrop-blur-sm font-extralight ">
-			<div className="flex flex-col w-full max-w-md gap-4 py-4 overflow-hidden bg-white h-3/5 rounded-t-2xl ">
+		<section
+			onClick={() => setToggleCalendar(false)}
+			className="fixed bottom-0 left-0 flex items-end justify-center w-full h-full bg-opacity-20 backdrop-filter backdrop-blur-sm font-extralight "
+		>
+			<div
+				onClick={(e) => e.stopPropagation()}
+				className="flex flex-col w-full max-w-md gap-4 py-4 overflow-hidden bg-white h-3/5 rounded-t-2xl "
+			>
 				<div className="flex justify-between px-2">
 					<div className="flex items-center justify-between w-40 gap-4 ">
 						<button onClick={prevMonth}>

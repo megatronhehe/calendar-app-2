@@ -18,6 +18,7 @@ const CreateActivityModal = ({ setToggleModal }) => {
 		timeEnd: "",
 		priority: "",
 		type: "",
+		isDone: false,
 	});
 
 	const handleActivityForm = (e) => {

@@ -14,7 +14,7 @@ import {
 const ActivityItem = ({ activity }) => {
 	const { deleteActivity } = useContext(ActivitiesContext);
 
-	const { id, name, timeStart, timeEnd, priority, type } = activity;
+	const { id, name, timeStart, timeEnd, priority, type, isDone } = activity;
 
 	return (
 		<li className="flex flex-col gap-1 bg-white rounded-lg">
@@ -35,7 +35,11 @@ const ActivityItem = ({ activity }) => {
 						<PiNotePencilLight />
 					</button>
 
-					<button className="flex items-center justify-center text-xl bg-gray-200 rounded-lg w-7 h-7">
+					<button
+						className={`flex items-center justify-center text-xl  rounded-lg w-7 h-7 ${
+							isDone ? "bg-green-300 text-white" : "bg-gray-200"
+						}`}
+					>
 						<PiCheckLight />
 					</button>
 				</div>

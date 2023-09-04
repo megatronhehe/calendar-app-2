@@ -25,7 +25,6 @@ const ActivitiesContextProvider = ({ children }) => {
 	}, []);
 
 	const addActivity = (newActivity) => {
-		setIsActivitiesLoading(true);
 		setActivitiesError("");
 		fetch("http://localhost:8000/activities", {
 			method: "POST",
@@ -39,10 +38,7 @@ const ActivitiesContextProvider = ({ children }) => {
 					setActivities((prev) => [...prev, newActivity]);
 				}
 			})
-			.catch((err) => setActivitiesError(err))
-			.finally(() => {
-				setIsActivitiesLoading(false);
-			});
+			.catch((err) => setActivitiesError(err));
 	};
 
 	const deleteActivity = (id) => {

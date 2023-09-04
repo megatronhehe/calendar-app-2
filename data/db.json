@@ -1,24 +1,14 @@
 {
   "activities": [
     {
-      "id": 1,
-      "name": "wash the dishes",
-      "timeStart": "8:00",
-      "timeEnd": "9:00",
-      "priority": "normal",
-      "type": "chores",
-      "date": "2023-09-03",
-      "isDone": true
-    },
-    {
-      "id": 2,
-      "name": "find new business ideas",
-      "timeStart": "16:00",
-      "timeEnd": "17:00",
+      "id": "908c84c4-d014-4a49-9453-2b3ea46e9037",
+      "name": "win a game of dota",
+      "date": "2023-09-04",
+      "timeStart": "20:00",
+      "timeEnd": "23:00",
       "priority": "low",
-      "type": "hustle",
-      "date": "2023-09-03",
-      "isDone": false
+      "type": "chores",
+      "isDone": true
     }
   ]
 }

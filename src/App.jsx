@@ -12,7 +12,7 @@ const App = () => {
 		<>
 			<MainContainer>
 				<Activities />
-				{toggleCalendar && <Calendar />}
+				{toggleCalendar && <Calendar setToggleCalendar={setToggleCalendar} />}
 			</MainContainer>
 			<NavbarMobile setToggleCalendar={setToggleCalendar} />
 		</>
