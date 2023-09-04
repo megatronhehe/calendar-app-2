@@ -4,11 +4,17 @@ import ActivitiesContext from "./ActivitiesContext";
 
 const ActivitiesContextProvider = ({ children }) => {
 	const [activities, setActivities] = useState([]);
-	const [isActivitiesLoading, setIsActivitiesLoading] = useState(false);
+	const [isLoading, setIsLoading] = useState({
+		fetching: false,
+		adding: false,
+		deleting: false,
+		marking: false,
+		editing: false,
+	});
 	const [activitiesError, setActivitiesError] = useState("");
 
 	useEffect(() => {
-		setIsActivitiesLoading(true);
+		setIsLoading((prev) => ({ ...prev, fetching: true }));
 		setActivitiesError("");
 		fetch("http://localhost:8000/activities")
 			.then((res) => {
@@ -20,11 +26,12 @@ const ActivitiesContextProvider = ({ children }) => {
 			.then((data) => setActivities(data))
 			.catch((err) => setActivitiesError(err))
 			.finally(() => {
-				setIsActivitiesLoading(false);
+				setIsLoading((prev) => ({ ...prev, fetching: false }));
 			});
 	}, []);
 
 	const addActivity = (newActivity) => {
+		setIsLoading((prev) => ({ ...prev, adding: true }));
 		setActivitiesError("");
 		fetch("http://localhost:8000/activities", {
 			method: "POST",
@@ -38,10 +45,14 @@ const ActivitiesContextProvider = ({ children }) => {
 					setActivities((prev) => [...prev, newActivity]);
 				}
 			})
-			.catch((err) => setActivitiesError(err));
+			.catch((err) => setActivitiesError(err))
+			.finally(() => {
+				setIsLoading((prev) => ({ ...prev, adding: false }));
+			});
 	};
 
 	const deleteActivity = (id) => {
+		setIsLoading((prev) => ({ ...prev, deleting: true }));
 		fetch(`http://localhost:8000/activities/${id}`, {
 			method: "DELETE",
 		})
@@ -54,11 +65,16 @@ const ActivitiesContextProvider = ({ children }) => {
 					);
 				}
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => console.log(err))
+			.finally(() => {
+				setIsLoading((prev) => ({ ...prev, deleting: false }));
+			});
 	};
 
 	const markActivityDone = (id) => {
 		const thisActivity = activities.find((activity) => activity.id === id);
+
+		setIsLoading((prev) => ({ ...prev, marking: true }));
 
 		fetch(`http://localhost:8000/activities/${id}`, {
 			method: "PUT",
@@ -78,7 +94,10 @@ const ActivitiesContextProvider = ({ children }) => {
 					);
 				}
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => console.log(err))
+			.finally(() => {
+				setIsLoading((prev) => ({ ...prev, marking: false }));
+			});
 	};
 
 	const isActivitiesExist = activities.length > 0;
@@ -88,7 +107,7 @@ const ActivitiesContextProvider = ({ children }) => {
 			value={{
 				activities,
 				isActivitiesExist,
-				isActivitiesLoading,
+				isLoading,
 				activitiesError,
 				addActivity,
 				deleteActivity,

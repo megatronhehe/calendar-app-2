@@ -1,14 +1,44 @@
 {
   "activities": [
     {
-      "id": "908c84c4-d014-4a49-9453-2b3ea46e9037",
+      "id": "e07af4fa-b1fb-49cc-b92f-a98015c3bc83",
       "name": "win a game of dota",
       "date": "2023-09-04",
-      "timeStart": "20:00",
-      "timeEnd": "23:00",
+      "priority": "high",
+      "type": "hustle",
+      "isDone": false
+    },
+    {
+      "id": "e057d66f-d023-4d94-8563-3298e29abf5e",
+      "name": "clean the room",
+      "date": "2023-09-04",
       "priority": "low",
       "type": "chores",
-      "isDone": true
+      "isDone": false
+    },
+    {
+      "id": "e5a0dac8-143c-4604-88ac-615075fbbc17",
+      "name": "asd",
+      "date": "2023-09-04",
+      "priority": "high",
+      "type": "chores",
+      "isDone": false
+    },
+    {
+      "id": "68786b26-4081-4ef5-8d57-c0436286dce0",
+      "name": "das",
+      "date": "2023-09-04",
+      "priority": "low",
+      "type": "hustle",
+      "isDone": false
+    },
+    {
+      "id": "7a835278-46e6-4fb4-bccf-de5eb903095b",
+      "name": "asdasd",
+      "date": "2023-09-04",
+      "priority": "normal",
+      "type": "work",
+      "isDone": false
     }
   ]
 }

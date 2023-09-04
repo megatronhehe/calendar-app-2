@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 
-import DateContext from "../../context/DateContext";
-import ActivitiesContext from "../../context/ActivitiesContext";
+import DateContext from "../../../context/DateContext";
+import ActivitiesContext from "../../../context/ActivitiesContext";
 
 import ActivityItem from "./ActivityItem";
-import ExceptionMessage from "./ExceptionMessage";
+import ExceptionMessage from "../ExceptionMessage";
 
 import {
 	PiSlidersLight,
@@ -15,12 +15,8 @@ import { isSameDay, parseISO } from "date-fns";
 
 const ActivitiesList = ({ setToggleModal }) => {
 	const { selectedDate } = useContext(DateContext);
-	const {
-		activities,
-		isActivitiesExist,
-		isActivitiesLoading,
-		activitiesError,
-	} = useContext(ActivitiesContext);
+	const { activities, isActivitiesExist, isLoading, activitiesError } =
+		useContext(ActivitiesContext);
 
 	const filterActivitiesByDate = isActivitiesExist
 		? activities.filter((activity) =>
@@ -33,34 +29,36 @@ const ActivitiesList = ({ setToggleModal }) => {
 	));
 
 	return (
-		<section className="p-4 overflow-hidden text-gray-100">
+		<section className="h-full p-4 overflow-hidden text-gray-100">
 			<div className="flex items-center justify-between ">
 				<h2 className="text-lg">Activities</h2>
 
 				<ul className="flex gap-2 text-2xl">
 					<li>
-						<button className="flex items-center justify-center w-8 h-8 bg-gray-700 rounded-full">
+						<button className="flex items-center justify-center w-8 h-8 bg-gray-900 rounded-md">
 							<PiSlidersLight />
 						</button>
 					</li>
+
 					<li>
 						<button
 							onClick={() => setToggleModal(true)}
-							className="flex items-center justify-center w-8 h-8 bg-gray-700 rounded-full"
+							className="flex items-center justify-center w-8 h-8 bg-gray-900 rounded-md"
 						>
 							<PiPlusLight />
 						</button>
 					</li>
+
 					<li>
-						<button className="flex items-center justify-center w-8 h-8 bg-gray-700 rounded-full">
+						<button className="flex items-center justify-center w-8 h-8 bg-gray-900 rounded-md">
 							<PiDotsThreeVerticalLight />
 						</button>
 					</li>
 				</ul>
 			</div>
 
-			<ul className="flex flex-col gap-2 mt-4 overflow-auto text-gray-800 h-4/5 ">
-				{isActivitiesLoading ? (
+			<ul className="flex flex-col gap-2 mt-4 overflow-auto text-gray-800 h-3/4 sm:h-96">
+				{isLoading.fetching ? (
 					<ExceptionMessage message={"Loading ..."} />
 				) : activitiesError.length > 0 ? (
 					<ExceptionMessage message={activitiesError} />

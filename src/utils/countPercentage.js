@@ -1,3 +1,3 @@
 export default function percentage(partialValue, totalValue) {
-	return (100 * partialValue) / totalValue;
+	return Math.ceil((100 * partialValue) / totalValue);
 }

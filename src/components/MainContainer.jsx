@@ -2,7 +2,7 @@ import React from "react";
 
 const MainContainer = ({ children }) => {
 	return (
-		<main className="w-full bg-gray-800 flex h-screen justify-center font-extralight">
+		<main className="flex justify-center w-full h-screen bg-gray-800 font-extralight">
 			{children}
 		</main>
 	);

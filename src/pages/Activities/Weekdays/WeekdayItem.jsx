@@ -28,25 +28,25 @@ const WeekdayItem = ({ date }) => {
 
 	const calendarItemStyle =
 		!isSameDay(selectedDate, date) && !isToday(date)
-			? "bg-white"
+			? ""
 			: isSameDay(selectedDate, date) && isToday(date)
-			? "bg-blue-600 text-white"
+			? "bg-blue-600 "
 			: isToday(date)
-			? "bg-gray-700 text-white"
+			? "bg-gray-700 "
 			: isSameDay(selectedDate, date)
-			? "bg-blue-300 text-white"
+			? "bg-blue-300 "
 			: "";
 
 	return (
 		<li
 			onClick={() => setSelectedDate(date)}
 			key={date}
-			className={`relative w-full flex flex-col items-center gap-2 py-2 rounded-xl 
+			className={`relative w-full flex flex-col items-center gap-2 py-2 rounded-xl text-white 
             ${calendarItemStyle}
             `}
 		>
-			<h3 className="text-xs">{format(date, "eee")}</h3>
-			<span>{format(date, "d")}</span>
+			<h3 className="pb-2 text-xs">{format(date, "eee")}</h3>
+			<span className="font-semibold">{format(date, "d")}</span>
 			{isActivitiesExistInThisDate ? (
 				isAllActivitiesDoneInThisDate ? (
 					<PiCircleFill className="absolute text-green-400 -bottom-2" />
