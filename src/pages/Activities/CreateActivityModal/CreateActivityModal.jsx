@@ -120,6 +120,9 @@ const CreateActivityModal = ({ setToggleModal }) => {
 							<option value="work">Work</option>
 							<option value="chores">Chores</option>
 							<option value="hustle">Hustle</option>
+							<option value="solo project">Code</option>
+							<option value="workout">Workout</option>
+							<option value="general">General</option>
 						</select>
 					</label>
 				</div>

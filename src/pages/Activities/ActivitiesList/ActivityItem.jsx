@@ -87,8 +87,12 @@ const ActivityItem = ({ activity }) => {
 					<PiBriefcaseLight className="text-xl" />
 					{type}
 				</span>
-				<span className="flex items-center gap-1 ml-2 text-xs font-semibold text-green-400">
-					{isDone ? "completed" : ""}
+				<span
+					className={`flex items-center justify-center gap-1 ml-2 text-xs font-semibold tracking-wide text-white rounded-full ${
+						isDone ? "bg-green-300" : ""
+					}`}
+				>
+					{isDone ? "done" : ""}
 				</span>
 			</div>
 		</li>

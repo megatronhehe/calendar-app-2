@@ -1,27 +1,43 @@
 {
   "activities": [
     {
-      "id": "e07af4fa-b1fb-49cc-b92f-a98015c3bc83",
-      "name": "win a game of dota",
-      "date": "2023-09-04",
-      "priority": "high",
-      "type": "hustle",
-      "isDone": false
-    },
-    {
-      "id": "e057d66f-d023-4d94-8563-3298e29abf5e",
-      "name": "clean the room",
-      "date": "2023-09-04",
-      "priority": "low",
-      "type": "chores",
-      "isDone": false
-    },
-    {
-      "id": "0cb7f39c-5556-43cc-a1fa-cc4f703f9a07",
-      "name": "test",
+      "id": "300f8121-3a69-474a-92af-3b1df979305f",
+      "name": "add static calendar on pc mode",
       "date": "2023-09-05",
-      "priority": "high",
-      "type": "chores",
+      "priority": "normal",
+      "type": "solo project",
+      "isDone": false
+    },
+    {
+      "id": "37159008-9117-4d2b-90c5-3ed46db997e1",
+      "name": "add edit feature",
+      "date": "2023-09-05",
+      "priority": "normal",
+      "type": "solo project",
+      "isDone": false
+    },
+    {
+      "id": "dd580bda-bd42-4260-987f-fb273cf42bb3",
+      "name": "pushing",
+      "date": "2023-09-05",
+      "priority": "normal",
+      "type": "workout",
+      "isDone": false
+    },
+    {
+      "id": "1d161f2c-96b4-4678-a3db-6e4e94fb8dc8",
+      "name": "learn backend",
+      "date": "2023-09-05",
+      "priority": "low",
+      "type": "solo project",
+      "isDone": false
+    },
+    {
+      "id": "55521a89-dcec-4f43-8922-7d192935f5d7",
+      "name": "have a haircut",
+      "date": "2023-09-05",
+      "priority": "low",
+      "type": "general",
       "isDone": false
     }
   ]
