@@ -13,8 +13,13 @@ import {
 } from "react-icons/pi";
 
 const ActivityItem = ({ activity }) => {
-	const { deleteActivity, markActivityDone, isLoading } =
-		useContext(ActivitiesContext);
+	const {
+		deleteActivity,
+		markActivityDone,
+		isLoading,
+		selectedActivity,
+		setSelectedActivity,
+	} = useContext(ActivitiesContext);
 
 	const { id, name, priority, type, isDone } = activity;
 
@@ -33,10 +38,13 @@ const ActivityItem = ({ activity }) => {
 				<div className="flex items-center gap-1 text-white">
 					<button
 						disabled={isLoading.deleting}
-						onClick={() => deleteActivity(id)}
+						onClick={() => {
+							deleteActivity(id);
+							setSelectedActivity(id);
+						}}
 						className="flex items-center justify-center text-xl bg-red-300 rounded-full w-7 h-7 "
 					>
-						{isLoading.deleting ? (
+						{isLoading.deleting && selectedActivity === id ? (
 							<PiCircleDashedLight className="animate-spin" />
 						) : (
 							<PiTrashFill />
@@ -50,12 +58,16 @@ const ActivityItem = ({ activity }) => {
 					</button>
 
 					<button
-						onClick={() => markActivityDone(id)}
+						disabled={isLoading.marking}
+						onClick={() => {
+							markActivityDone(id);
+							setSelectedActivity(id);
+						}}
 						className={` text-3xl  rounded-md  ${
 							isDone ? "text-green-300 " : "text-gray-300"
 						}`}
 					>
-						{isLoading.marking ? (
+						{isLoading.marking && selectedActivity === id ? (
 							<PiCircleDashedLight className="animate-spin" />
 						) : isDone ? (
 							<PiCheckSquareFill />

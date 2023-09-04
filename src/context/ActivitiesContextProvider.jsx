@@ -11,6 +11,7 @@ const ActivitiesContextProvider = ({ children }) => {
 		marking: false,
 		editing: false,
 	});
+	const [selectedActivity, setSelectedActivity] = useState("");
 	const [activitiesError, setActivitiesError] = useState("");
 
 	useEffect(() => {
@@ -109,6 +110,8 @@ const ActivitiesContextProvider = ({ children }) => {
 				isActivitiesExist,
 				isLoading,
 				activitiesError,
+				selectedActivity,
+				setSelectedActivity,
 				addActivity,
 				deleteActivity,
 				markActivityDone,

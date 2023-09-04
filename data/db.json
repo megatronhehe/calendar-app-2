@@ -15,30 +15,6 @@
       "priority": "low",
       "type": "chores",
       "isDone": false
-    },
-    {
-      "id": "e5a0dac8-143c-4604-88ac-615075fbbc17",
-      "name": "asd",
-      "date": "2023-09-04",
-      "priority": "high",
-      "type": "chores",
-      "isDone": false
-    },
-    {
-      "id": "68786b26-4081-4ef5-8d57-c0436286dce0",
-      "name": "das",
-      "date": "2023-09-04",
-      "priority": "low",
-      "type": "hustle",
-      "isDone": false
-    },
-    {
-      "id": "7a835278-46e6-4fb4-bccf-de5eb903095b",
-      "name": "asdasd",
-      "date": "2023-09-04",
-      "priority": "normal",
-      "type": "work",
-      "isDone": false
     }
   ]
 }
