@@ -57,6 +57,30 @@ const ActivitiesContextProvider = ({ children }) => {
 			.catch((err) => console.log(err));
 	};
 
+	const markActivityDone = (id) => {
+		const thisActivity = activities.find((activity) => activity.id === id);
+
+		fetch(`http://localhost:8000/activities/${id}`, {
+			method: "PUT",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({ ...thisActivity, isDone: !thisActivity.isDone }),
+		})
+			.then((res) => {
+				if (!res.ok) {
+					console.log(`${res.status} ${res.statusText}`);
+				} else {
+					setActivities((prev) =>
+						prev.map((activity) =>
+							activity.id === id
+								? { ...activity, isDone: !activity.isDone }
+								: activity
+						)
+					);
+				}
+			})
+			.catch((err) => console.log(err));
+	};
+
 	const isActivitiesExist = activities.length > 0;
 
 	return (
@@ -68,6 +92,7 @@ const ActivitiesContextProvider = ({ children }) => {
 				activitiesError,
 				addActivity,
 				deleteActivity,
+				markActivityDone,
 			}}
 		>
 			{children}

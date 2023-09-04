@@ -12,7 +12,7 @@ import {
 } from "react-icons/pi";
 
 const ActivityItem = ({ activity }) => {
-	const { deleteActivity } = useContext(ActivitiesContext);
+	const { deleteActivity, markActivityDone } = useContext(ActivitiesContext);
 
 	const { id, name, timeStart, timeEnd, priority, type, isDone } = activity;
 
@@ -36,6 +36,7 @@ const ActivityItem = ({ activity }) => {
 					</button>
 
 					<button
+						onClick={() => markActivityDone(id)}
 						className={`flex items-center justify-center text-xl  rounded-lg w-7 h-7 ${
 							isDone ? "bg-green-300 text-white" : "bg-gray-200"
 						}`}
