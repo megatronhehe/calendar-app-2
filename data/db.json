@@ -6,15 +6,7 @@
       "date": "2023-09-05",
       "priority": "normal",
       "type": "solo project",
-      "isDone": false
-    },
-    {
-      "id": "37159008-9117-4d2b-90c5-3ed46db997e1",
-      "name": "add edit feature",
-      "date": "2023-09-05",
-      "priority": "normal",
-      "type": "solo project",
-      "isDone": false
+      "isDone": true
     },
     {
       "id": "dd580bda-bd42-4260-987f-fb273cf42bb3",
@@ -30,6 +22,14 @@
       "date": "2023-09-05",
       "priority": "low",
       "type": "solo project",
+      "isDone": false
+    },
+    {
+      "id": "9da107ae-c177-4639-85ad-8b57055a20a1",
+      "name": "win a game of dota",
+      "date": "2023-09-05",
+      "priority": "high",
+      "type": "general",
       "isDone": false
     }
   ]

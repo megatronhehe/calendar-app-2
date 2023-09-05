@@ -1,14 +1,8 @@
 import React from "react";
 
-const NavbarMobile = ({ setToggleCalendar }) => {
+const NavbarMobile = () => {
 	return (
-		<nav className="fixed bottom-0 left-0 w-full flex justify-center">
-			<ul className="text-gray-400">
-				<li onClick={() => setToggleCalendar((prev) => !prev)}>
-					show calendar
-				</li>
-			</ul>
-		</nav>
+		<nav className="fixed bottom-0 left-0 flex justify-center w-full"></nav>
 	);
 };
 

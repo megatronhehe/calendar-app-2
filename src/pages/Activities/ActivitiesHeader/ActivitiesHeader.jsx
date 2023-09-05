@@ -22,7 +22,7 @@ const ActivitiesHeader = () => {
 	const activitiesToDateCount = activitiesToDate.length;
 
 	return (
-		<section className="flex flex-col justify-between h-full bg-white">
+		<section className="flex flex-col justify-between h-full bg-white sm:rounded-2xl sm:h-2/5">
 			<div className="p-4">
 				<h1 className="text-2xl">Good morning</h1>
 
