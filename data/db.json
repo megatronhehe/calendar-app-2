@@ -1,24 +1,8 @@
 {
   "activities": [
     {
-      "id": "300f8121-3a69-474a-92af-3b1df979305f",
-      "name": "add static calendar on pc mode",
-      "date": "2023-09-05",
-      "priority": "normal",
-      "type": "solo project",
-      "isDone": true
-    },
-    {
-      "id": "dd580bda-bd42-4260-987f-fb273cf42bb3",
-      "name": "pushing",
-      "date": "2023-09-05",
-      "priority": "normal",
-      "type": "workout",
-      "isDone": false
-    },
-    {
       "id": "1d161f2c-96b4-4678-a3db-6e4e94fb8dc8",
-      "name": "learn backend",
+      "name": "learn backendd",
       "date": "2023-09-05",
       "priority": "low",
       "type": "solo project",
@@ -30,6 +14,14 @@
       "date": "2023-09-05",
       "priority": "high",
       "type": "general",
+      "isDone": false
+    },
+    {
+      "id": "33e20ecd-e7a8-44f4-bc60-f07931024903",
+      "name": "add edit feature",
+      "date": "2023-09-05",
+      "priority": "normal",
+      "type": "solo project",
       "isDone": false
     }
   ]

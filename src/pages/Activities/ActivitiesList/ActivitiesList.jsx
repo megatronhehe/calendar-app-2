@@ -30,7 +30,7 @@ const ActivitiesList = ({ setToggleModal }) => {
 
 	return (
 		<>
-			<section className="p-2 text-gray-100">
+			<section className="p-2 text-gray-100 sm:bg-gray-900 sm:rounded-xl">
 				<div className="flex items-center justify-between ">
 					<h2 className="text-lg">Activities</h2>
 
@@ -59,7 +59,7 @@ const ActivitiesList = ({ setToggleModal }) => {
 				</div>
 			</section>
 
-			<section className="p-2 overflow-auto h-2/3">
+			<section className="p-2 h-2/3 sm:bg-gray-900 sm:rounded-xl">
 				<ul className="flex flex-col h-full gap-2 overflow-auto text-gray-800 sm:h-96 ">
 					{isLoading.fetching ? (
 						<ExceptionMessage message={"Loading ..."} />

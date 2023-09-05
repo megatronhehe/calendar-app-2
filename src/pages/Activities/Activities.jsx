@@ -47,14 +47,14 @@ const Activities = () => {
 
 	return (
 		<>
-			<section className="flex flex-col w-full h-full max-w-3xl gap-4 sm:items-center sm:justify-center sm:flex-row">
-				<div className="h-1/4 sm:w-2/5 sm:h-2/3 sm:flex sm:flex-col sm:gap-4">
+			<section className="flex flex-col w-full h-full max-w-3xl gap-4 sm:pt-40 sm:justify-center sm:flex-row">
+				<div className=" h-1/4 sm:w-2/5 sm:h-2/3 md:h-2/3 sm:flex sm:flex-col sm:gap-4">
 					<ActivitiesHeader />
 
 					{isMobileMode && <Calendar />}
 				</div>
 
-				<div className="h-3/4 sm:w-3/5">
+				<div className=" h-3/4 sm:w-3/5 sm:flex sm:flex-col sm:gap-4">
 					<ActivitiesWeekdays />
 
 					<ActivitiesList setToggleModal={setToggleModal} />

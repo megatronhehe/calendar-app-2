@@ -17,10 +17,10 @@ const PriorityActivitiesCard = ({
 
 	return (
 		<li
-			className={`flex flex-col items-center justify-between flex-shrink-0 w-32 text-sm text-gray-100  py-2 rounded-xl ${backgroundColor} `}
+			className={`flex flex-col items-center justify-between flex-shrink-0 w-32 text-xs text-gray-100  py-2 rounded-xl ${backgroundColor} `}
 		>
 			<h2 className="flex items-center gap-1">
-				<PiFireSimpleFill className={`text-xl ${iconColor}`} /> {priority}{" "}
+				<PiFireSimpleFill className={`text-base ${iconColor}`} /> {priority}{" "}
 				priority
 			</h2>
 			<span className="text-xl">

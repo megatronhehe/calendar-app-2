@@ -101,6 +101,33 @@ const ActivitiesContextProvider = ({ children }) => {
 			});
 	};
 
+	const submitEditActivity = (id, editedActivity) => {
+		setIsLoading((prev) => ({ ...prev, editing: true }));
+
+		fetch(`http://localhost:8000/activities/${id}`, {
+			method: "PUT",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(editedActivity),
+		})
+			.then((res) => {
+				if (!res.ok) {
+					console.log(`${res.status} ${res.statusText}`);
+				} else {
+					setActivities((prev) =>
+						prev.map((activity) =>
+							editedActivity.id === id
+								? { ...activity, editedActivity }
+								: activity
+						)
+					);
+				}
+			})
+			.catch((err) => console.log(err))
+			.finally(() => {
+				setIsLoading((prev) => ({ ...prev, editing: false }));
+			});
+	};
+
 	const isActivitiesExist = activities.length > 0;
 
 	return (
@@ -115,6 +142,7 @@ const ActivitiesContextProvider = ({ children }) => {
 				addActivity,
 				deleteActivity,
 				markActivityDone,
+				submitEditActivity,
 			}}
 		>
 			{children}

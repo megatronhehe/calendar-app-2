@@ -9,7 +9,7 @@ import { PiCaretLeftLight, PiCaretRightLight } from "react-icons/pi";
 
 import { endOfMonth, startOfMonth, startOfWeek, endOfWeek } from "date-fns";
 
-const Calendar = ({ setToggleCalendar }) => {
+const Calendar = () => {
 	const { today, setToday } = useContext(DateContext);
 
 	const firstDateInMonth = startOfWeek(startOfMonth(today));
@@ -35,7 +35,7 @@ const Calendar = ({ setToggleCalendar }) => {
 	return (
 		<div
 			onClick={(e) => e.stopPropagation()}
-			className="flex flex-col w-full gap-4 overflow-hidden bg-white h-1/2 rounded-b-2xl sm:rounded-2xl sm:h-4/5"
+			className="flex flex-col w-full gap-4 overflow-hidden bg-white h-2/3 rounded-b-2xl sm:rounded-2xl sm:h-full sm:bg-gray-900 sm:text-white"
 		>
 			<div className="flex justify-between px-2 py-4">
 				<div className="flex items-center justify-between w-40 gap-2">
@@ -51,7 +51,7 @@ const Calendar = ({ setToggleCalendar }) => {
 				<span className="mr-4 text-xl">{format(today, "yyyy")}</span>
 			</div>
 
-			<div className="flex justify-center mt-3 ">
+			<div className="flex justify-center mt-3 sm:mt-0 ">
 				<ul className="grid grid-cols-7 gap-3 sm:gap-1">{datesElement}</ul>
 			</div>
 		</div>
