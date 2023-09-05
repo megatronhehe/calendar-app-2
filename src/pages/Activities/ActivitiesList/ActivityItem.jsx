@@ -31,7 +31,7 @@ const ActivityItem = ({ activity }) => {
 			: "text-blue-400";
 
 	return (
-		<li className="flex flex-col gap-1 bg-white rounded-lg">
+		<li className="flex flex-col flex-shrink-0 gap-1 bg-white rounded-lg">
 			<div className="flex items-center justify-between p-2">
 				<h3>{name}</h3>
 

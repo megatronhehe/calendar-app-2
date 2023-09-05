@@ -31,14 +31,6 @@
       "priority": "low",
       "type": "solo project",
       "isDone": false
-    },
-    {
-      "id": "55521a89-dcec-4f43-8922-7d192935f5d7",
-      "name": "have a haircut",
-      "date": "2023-09-05",
-      "priority": "low",
-      "type": "general",
-      "isDone": false
     }
   ]
 }

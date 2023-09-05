@@ -21,12 +21,12 @@ const Activities = () => {
 
 	return (
 		<>
-			<section className="flex flex-col w-full h-full max-w-3xl sm:items-center sm:flex-row ">
-				<div className="sm:w-2/5">
+			<section className="flex flex-col h-full gap-4">
+				<div className="h-1/4">
 					<ActivitiesHeader />
 				</div>
 
-				<div className="overflow-hidden sm:w-3/5">
+				<div className="h-3/4">
 					<ActivitiesWeekdays />
 
 					<ActivitiesList setToggleModal={setToggleModal} />

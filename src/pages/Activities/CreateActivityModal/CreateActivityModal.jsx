@@ -39,7 +39,7 @@ const CreateActivityModal = ({ setToggleModal }) => {
 			animate={{ opacity: 1 }}
 			exit={{ opacity: 0 }}
 			onClick={() => setToggleModal(false)}
-			className="fixed top-0 left-0 z-10 flex items-center justify-center w-full h-full bg-black bg-opacity-40"
+			className="fixed top-0 left-0 z-10 flex items-center justify-center w-full h-full bg-opacity-40 backdrop-filter backdrop-blur-sm"
 		>
 			<motion.form
 				initial={{ y: "100vh" }}

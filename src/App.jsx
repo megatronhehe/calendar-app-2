@@ -13,10 +13,11 @@ const App = () => {
 		<>
 			<MainContainer>
 				<Activities />
-				<AnimatePresence>
-					{toggleCalendar && <Calendar setToggleCalendar={setToggleCalendar} />}
-				</AnimatePresence>
 			</MainContainer>
+
+			<AnimatePresence>
+				{toggleCalendar && <Calendar setToggleCalendar={setToggleCalendar} />}
+			</AnimatePresence>
 			<NavbarMobile setToggleCalendar={setToggleCalendar} />
 		</>
 	);

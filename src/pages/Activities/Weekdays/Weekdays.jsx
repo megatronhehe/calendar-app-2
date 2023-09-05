@@ -19,7 +19,7 @@ const Weekdays = () => {
 	));
 
 	return (
-		<section className="px-4 py-4 text-gray-800 ">
+		<section className="flex flex-col items-center justify-center text-gray-800 h-1/5">
 			<ul className="flex justify-between w-full gap-2">
 				{thisWeekDaysElement}
 			</ul>

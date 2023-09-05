@@ -1,11 +1,10 @@
 import { format, isSameDay, parseISO } from "date-fns";
 import React, { useContext } from "react";
 
-import ActivitiesToDateCard from "./ActivitiesToDateCard";
-
 import DateContext from "../../../context/DateContext";
 import ActivitiesContext from "../../../context/ActivitiesContext";
 
+import ActivitiesToDateCard from "./ActivitiesToDateCard";
 import PriorityActivitiesCard from "./PriorityActivitiesCard";
 
 const ActivitiesHeader = () => {
@@ -23,7 +22,7 @@ const ActivitiesHeader = () => {
 	const activitiesToDateCount = activitiesToDate.length;
 
 	return (
-		<section className="bg-white rounded-b-2xl sm:rounded-2xl">
+		<section className="flex flex-col justify-between h-full bg-white">
 			<div className="p-4">
 				<h1 className="text-2xl">Good morning</h1>
 
@@ -32,7 +31,7 @@ const ActivitiesHeader = () => {
 				</span>
 			</div>
 
-			<ul className="flex gap-2 p-2 overflow-auto text-sm text-gray-100 sm:flex-col">
+			<ul className="flex gap-2 p-2 overflow-auto">
 				<ActivitiesToDateCard
 					activitiesToDateExist={activitiesToDateExist}
 					activitiesToDate={activitiesToDate}
