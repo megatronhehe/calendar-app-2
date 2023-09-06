@@ -45,6 +45,17 @@ const ActivityItem = ({ activity }) => {
 		}
 	}, [isLoading.editing, isLoading.deleting]);
 
+	useEffect(() => {
+		if (!isEnableEdit) {
+			setThisActivity((prev) => ({
+				...prev,
+				name: name,
+				priority: priority,
+				type: type,
+			}));
+		}
+	}, [isEnableEdit]);
+
 	const priorityArray = ["high", "normal", "low"];
 	const prioritySelectOptions = priorityArray.filter(
 		(item) => item !== priority
@@ -85,7 +96,9 @@ const ActivityItem = ({ activity }) => {
 					onSubmit={(e) => e.preventDefault()}
 					className="flex flex-col justify-between w-full"
 				>
-					<div className="flex items-center p-1">
+					<button onClick={() => submitEditActivity(thisActivity)}></button>
+
+					<div className="flex items-center mb-1">
 						<button onClick={() => markActivityDone(id)} className="text-2xl">
 							{isLoading.marking ? (
 								<PiCircleDashedLight className="animate-spin" />
@@ -156,7 +169,11 @@ const ActivityItem = ({ activity }) => {
 							onClick={() => submitEditActivity(thisActivity)}
 							className="flex items-center justify-center text-2xl text-white bg-green-400 rounded-md w-7 h-7"
 						>
-							<PiCheckCircleLight />
+							{isLoading.editing ? (
+								<PiCircleDashedLight className="animate-spin" />
+							) : (
+								<PiCheckCircleLight />
+							)}
 						</button>
 					)}
 

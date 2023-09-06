@@ -2,10 +2,10 @@
   "activities": [
     {
       "id": "bbf7790d-6543-4f1c-af2b-6da43ea61009",
-      "name": "workoutest123",
+      "name": "workoutest",
       "date": "2023-09-06",
-      "priority": "high",
-      "type": "workout",
+      "priority": "normal",
+      "type": "general",
       "isDone": true
     }
   ]
