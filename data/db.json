@@ -2,11 +2,11 @@
   "activities": [
     {
       "id": "bbf7790d-6543-4f1c-af2b-6da43ea61009",
-      "name": "workoutest",
+      "name": "workout",
       "date": "2023-09-06",
       "priority": "normal",
-      "type": "general",
-      "isDone": true
+      "type": "workout",
+      "isDone": false
     }
   ]
 }

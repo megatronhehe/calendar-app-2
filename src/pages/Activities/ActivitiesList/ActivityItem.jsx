@@ -12,6 +12,8 @@ import {
 	PiTagFill,
 } from "react-icons/pi";
 
+import { AnimatePresence, motion } from "framer-motion";
+
 const ActivityItem = ({ activity }) => {
 	const {
 		deleteActivity,
@@ -47,12 +49,7 @@ const ActivityItem = ({ activity }) => {
 
 	useEffect(() => {
 		if (!isEnableEdit) {
-			setThisActivity((prev) => ({
-				...prev,
-				name: name,
-				priority: priority,
-				type: type,
-			}));
+			setThisActivity((prev) => activity);
 		}
 	}, [isEnableEdit]);
 
@@ -82,16 +79,9 @@ const ActivityItem = ({ activity }) => {
 		</option>
 	));
 
-	const iconColor =
-		priority === "high"
-			? "text-red-400"
-			: priority === "normal"
-			? "text-green-400"
-			: "text-blue-400";
-
 	return (
 		<li className="flex w-full gap-2 p-1 text-gray-100 bg-gray-600 rounded-xl">
-			<div className="flex w-5/6 ">
+			<div className="flex w-4/5 ">
 				<form
 					onSubmit={(e) => e.preventDefault()}
 					className="flex flex-col justify-between w-full"
@@ -99,8 +89,15 @@ const ActivityItem = ({ activity }) => {
 					<button onClick={() => submitEditActivity(thisActivity)}></button>
 
 					<div className="flex items-center mb-1">
-						<button onClick={() => markActivityDone(id)} className="text-2xl">
-							{isLoading.marking ? (
+						<button
+							disabled={isLoading.marking && selectedActivity === id}
+							onClick={() => {
+								markActivityDone(id);
+								setSelectedActivity(id);
+							}}
+							className="text-2xl"
+						>
+							{isLoading.marking && selectedActivity === id ? (
 								<PiCircleDashedLight className="animate-spin" />
 							) : isDone ? (
 								<PiCheckSquareFill className="text-green-400" />
@@ -118,7 +115,7 @@ const ActivityItem = ({ activity }) => {
 						/>
 					</div>
 
-					<div className="grid grid-cols-3 p-1 bg-gray-700 rounded-lg">
+					<div className="grid grid-cols-3 p-1 overflow-hidden bg-gray-700 rounded-lg">
 						<div className="flex items-center gap-1">
 							<label htmlFor="priority">
 								<PiFireSimpleFill />
@@ -129,8 +126,11 @@ const ActivityItem = ({ activity }) => {
 								disabled={!isEnableEdit}
 								onChange={handleChange}
 								className="px-2 text-sm bg-gray-700 appearance-none"
+								value={thisActivity.priority}
 							>
-								<option value={priority}>{priority}</option>
+								<option value={thisActivity.priority}>
+									{thisActivity.priority}
+								</option>
 								{prioritySelectOptionsElement}
 							</select>
 						</div>
@@ -145,37 +145,51 @@ const ActivityItem = ({ activity }) => {
 								disabled={!isEnableEdit}
 								onChange={handleChange}
 								className="px-2 text-sm bg-gray-700 appearance-none"
+								value={thisActivity.type}
 							>
-								<option value={type}>{type}</option>
+								<option value={thisActivity.type}>{thisActivity.type}</option>
 								{typeSelectOptionsElement}
 							</select>
 						</div>
 
 						<div className="flex justify-end">
-							{isDone && (
-								<span className="px-2 text-sm text-white bg-green-400 rounded-full">
-									done!
-								</span>
-							)}
+							<AnimatePresence>
+								{isDone && (
+									<motion.span
+										initial={{ opacity: 0, y: -30 }}
+										animate={{ opacity: 1, y: 0 }}
+										exit={{ opacity: 0, y: -30 }}
+										className="px-2 text-sm text-white bg-green-400 rounded-full"
+									>
+										done!
+									</motion.span>
+								)}
+							</AnimatePresence>
 						</div>
 					</div>
 				</form>
 			</div>
 
-			<div className="flex flex-col items-end w-1/6 gap-2 border-l border-gray-500">
+			<div className="flex flex-col items-end w-1/5 gap-2 border-l border-gray-500">
 				<div className="flex gap-1">
-					{isEnableEdit && (
-						<button
-							onClick={() => submitEditActivity(thisActivity)}
-							className="flex items-center justify-center text-2xl text-white bg-green-400 rounded-md w-7 h-7"
-						>
-							{isLoading.editing ? (
-								<PiCircleDashedLight className="animate-spin" />
-							) : (
-								<PiCheckCircleLight />
-							)}
-						</button>
-					)}
+					<AnimatePresence>
+						{isEnableEdit && (
+							<motion.button
+								initial={{ opacity: 0, x: 30 }}
+								animate={{ opacity: 1, x: 0 }}
+								exit={{ opacity: 0, x: 30 }}
+								disabled={isLoading.editing}
+								onClick={() => submitEditActivity(thisActivity)}
+								className="flex items-center justify-center text-2xl text-white bg-green-400 rounded-md w-7 h-7"
+							>
+								{isLoading.editing ? (
+									<PiCircleDashedLight className="animate-spin" />
+								) : (
+									<PiCheckCircleLight />
+								)}
+							</motion.button>
+						)}
+					</AnimatePresence>
 
 					<button
 						onClick={() => setIsEnableEdit((prev) => !prev)}
@@ -186,18 +200,24 @@ const ActivityItem = ({ activity }) => {
 				</div>
 
 				<div className="flex gap-1">
-					{toggleConfirmDelete && (
-						<button
-							onClick={() => deleteActivity(id)}
-							className="flex items-center justify-center text-xl text-white bg-red-300 rounded-md w-7 h-7"
-						>
-							{isLoading.deleting ? (
-								<PiCircleDashedLight className="animate-spin" />
-							) : (
-								<PiTrashFill />
-							)}
-						</button>
-					)}
+					<AnimatePresence>
+						{toggleConfirmDelete && (
+							<motion.button
+								initial={{ opacity: 0, x: 30 }}
+								animate={{ opacity: 1, x: 0 }}
+								exit={{ opacity: 0, x: 30 }}
+								disabled={isLoading.deleting}
+								onClick={() => deleteActivity(id)}
+								className="flex items-center justify-center text-xl text-white bg-red-300 rounded-md w-7 h-7"
+							>
+								{isLoading.deleting ? (
+									<PiCircleDashedLight className="animate-spin" />
+								) : (
+									<PiTrashFill />
+								)}
+							</motion.button>
+						)}
+					</AnimatePresence>
 
 					<button
 						onClick={() => setToggleConfirmDelete((prev) => !prev)}
