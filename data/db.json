@@ -1,28 +1,12 @@
 {
   "activities": [
     {
-      "id": "1d161f2c-96b4-4678-a3db-6e4e94fb8dc8",
-      "name": "learn backendd",
-      "date": "2023-09-05",
-      "priority": "low",
-      "type": "solo project",
-      "isDone": false
-    },
-    {
-      "id": "9da107ae-c177-4639-85ad-8b57055a20a1",
-      "name": "win a game of dota",
-      "date": "2023-09-05",
+      "id": "bbf7790d-6543-4f1c-af2b-6da43ea61009",
+      "name": "workoutest123",
+      "date": "2023-09-06",
       "priority": "high",
-      "type": "general",
-      "isDone": false
-    },
-    {
-      "id": "33e20ecd-e7a8-44f4-bc60-f07931024903",
-      "name": "add edit feature",
-      "date": "2023-09-05",
-      "priority": "normal",
-      "type": "solo project",
-      "isDone": false
+      "type": "workout",
+      "isDone": true
     }
   ]
 }

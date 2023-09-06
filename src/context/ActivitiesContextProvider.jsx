@@ -101,10 +101,10 @@ const ActivitiesContextProvider = ({ children }) => {
 			});
 	};
 
-	const submitEditActivity = (id, editedActivity) => {
+	const submitEditActivity = (editedActivity) => {
 		setIsLoading((prev) => ({ ...prev, editing: true }));
 
-		fetch(`http://localhost:8000/activities/${id}`, {
+		fetch(`http://localhost:8000/activities/${editedActivity.id}`, {
 			method: "PUT",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(editedActivity),
@@ -115,9 +115,7 @@ const ActivitiesContextProvider = ({ children }) => {
 				} else {
 					setActivities((prev) =>
 						prev.map((activity) =>
-							editedActivity.id === id
-								? { ...activity, editedActivity }
-								: activity
+							editedActivity.id === activity.id ? editedActivity : activity
 						)
 					);
 				}

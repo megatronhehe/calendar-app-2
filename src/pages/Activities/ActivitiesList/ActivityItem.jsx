@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-
 import ActivitiesContext from "../../../context/ActivitiesContext";
-
 import {
 	PiFireSimpleFill,
 	PiCheckCircleLight,
@@ -10,6 +8,8 @@ import {
 	PiCheckSquareLight,
 	PiCheckSquareFill,
 	PiCircleDashedLight,
+	PiXLight,
+	PiTagFill,
 } from "react-icons/pi";
 
 const ActivityItem = ({ activity }) => {
@@ -25,12 +25,8 @@ const ActivityItem = ({ activity }) => {
 	const { id, name, priority, type, isDone } = activity;
 
 	const [isEnableEdit, setIsEnableEdit] = useState(false);
-	const [thisActivity, setThisActivity] = useState({
-		...activity,
-		name: name,
-		priority: priority,
-		type: type,
-	});
+	const [toggleConfirmDelete, setToggleConfirmDelete] = useState(false);
+	const [thisActivity, setThisActivity] = useState({ ...activity });
 
 	const handleChange = (e) => {
 		const { value, name } = e.target;
@@ -44,7 +40,10 @@ const ActivityItem = ({ activity }) => {
 		if (!isLoading.editing) {
 			setIsEnableEdit(false);
 		}
-	}, [isLoading.editing]);
+		if (!isLoading.deleting) {
+			setToggleConfirmDelete(false);
+		}
+	}, [isLoading.editing, isLoading.deleting]);
 
 	const priorityArray = ["high", "normal", "low"];
 	const prioritySelectOptions = priorityArray.filter(
@@ -80,108 +79,122 @@ const ActivityItem = ({ activity }) => {
 			: "text-blue-400";
 
 	return (
-		<form onSubmit={(e) => e.preventDefault()}>
-			<li className="flex flex-col flex-shrink-0 gap-1 bg-white rounded-lg">
-				<div className="flex items-center justify-between p-2">
-					<input
-						onChange={handleChange}
-						disabled={!isEnableEdit}
-						type="text"
-						name="name"
-						value={thisActivity.name}
-						className="w-full"
-					/>
+		<li className="flex w-full gap-2 p-1 text-gray-100 bg-gray-600 rounded-xl">
+			<div className="flex w-5/6 ">
+				<form
+					onSubmit={(e) => e.preventDefault()}
+					className="flex flex-col justify-between w-full"
+				>
+					<div className="flex items-center p-1">
+						<button onClick={() => markActivityDone(id)} className="text-2xl">
+							{isLoading.marking ? (
+								<PiCircleDashedLight className="animate-spin" />
+							) : isDone ? (
+								<PiCheckSquareFill className="text-green-400" />
+							) : (
+								<PiCheckSquareLight />
+							)}
+						</button>
+						<input
+							type="text"
+							name="name"
+							disabled={!isEnableEdit}
+							onChange={handleChange}
+							value={thisActivity.name}
+							className="w-full px-2 bg-gray-600"
+						/>
+					</div>
 
-					<div className="flex items-center gap-1 text-white">
+					<div className="grid grid-cols-3 p-1 bg-gray-700 rounded-lg">
+						<div className="flex items-center gap-1">
+							<label htmlFor="priority">
+								<PiFireSimpleFill />
+							</label>
+							<select
+								id="priority"
+								name="priority"
+								disabled={!isEnableEdit}
+								onChange={handleChange}
+								className="px-2 text-sm bg-gray-700 appearance-none"
+							>
+								<option value={priority}>{priority}</option>
+								{prioritySelectOptionsElement}
+							</select>
+						</div>
+
+						<div className="flex items-center gap-1">
+							<label htmlFor="type">
+								<PiTagFill />
+							</label>
+							<select
+								id="type"
+								name="type"
+								disabled={!isEnableEdit}
+								onChange={handleChange}
+								className="px-2 text-sm bg-gray-700 appearance-none"
+							>
+								<option value={type}>{type}</option>
+								{typeSelectOptionsElement}
+							</select>
+						</div>
+
+						<div className="flex justify-end">
+							{isDone && (
+								<span className="px-2 text-sm text-white bg-green-400 rounded-full">
+									done!
+								</span>
+							)}
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<div className="flex flex-col items-end w-1/6 gap-2 border-l border-gray-500">
+				<div className="flex gap-1">
+					{isEnableEdit && (
 						<button
-							disabled={isLoading.deleting || isEnableEdit}
-							onClick={() => {
-								deleteActivity(id);
-								setSelectedActivity(id);
-							}}
-							className="flex items-center justify-center text-xl bg-red-300 rounded-full w-7 h-7 "
+							onClick={() => submitEditActivity(thisActivity)}
+							className="flex items-center justify-center text-2xl text-white bg-green-400 rounded-md w-7 h-7"
 						>
-							{isLoading.deleting && selectedActivity === id ? (
+							<PiCheckCircleLight />
+						</button>
+					)}
+
+					<button
+						onClick={() => setIsEnableEdit((prev) => !prev)}
+						className="flex items-center justify-center text-2xl text-gray-400 bg-gray-100 rounded-md w-7 h-7"
+					>
+						{isEnableEdit ? <PiXLight /> : <PiNotePencilLight />}
+					</button>
+				</div>
+
+				<div className="flex gap-1">
+					{toggleConfirmDelete && (
+						<button
+							onClick={() => deleteActivity(id)}
+							className="flex items-center justify-center text-xl text-white bg-red-300 rounded-md w-7 h-7"
+						>
+							{isLoading.deleting ? (
 								<PiCircleDashedLight className="animate-spin" />
 							) : (
 								<PiTrashFill />
 							)}
 						</button>
+					)}
 
-						<div className="h-6 mx-1 border-r border-gray-300"></div>
-
-						{isEnableEdit ? (
-							<button
-								onClick={() => submitEditActivity(id, thisActivity)}
-								className="flex items-center justify-center text-xl bg-gray-300 rounded-full w-7 h-7"
-							>
-								<PiCheckCircleLight className="text-2xl" />
-							</button>
-						) : (
-							<button
-								onClick={() => setIsEnableEdit((prev) => !prev)}
-								className="flex items-center justify-center text-xl bg-gray-300 rounded-full w-7 h-7"
-							>
-								<PiNotePencilLight />
-							</button>
-						)}
-
-						<button
-							disabled={isLoading.marking}
-							onClick={() => {
-								markActivityDone(id);
-								setSelectedActivity(id);
-							}}
-							className={` text-3xl  rounded-md  ${
-								isDone ? "text-green-300 " : "text-gray-300"
-							}`}
-						>
-							{isLoading.marking && selectedActivity === id ? (
-								<PiCircleDashedLight className="animate-spin" />
-							) : isDone ? (
-								<PiCheckSquareFill />
-							) : (
-								<PiCheckSquareLight />
-							)}
-						</button>
-					</div>
-				</div>
-
-				<div className="flex justify-between p-1 bg-gray-100 rounded-lg">
-					<div className="flex items-center gap-2 text-sm font-semibold">
-						<PiFireSimpleFill className={`text-xl ${iconColor}`} />
-						<select
-							name="priority"
-							onChange={handleChange}
-							disabled={!isEnableEdit}
-							className={`${isEnableEdit ? "" : "appearance-none"} px-2`}
-						>
-							<option value={priority}>{priority}</option>
-							{prioritySelectOptionsElement}
-						</select>
-					</div>
-
-					<div className="flex items-center gap-2 text-sm ">
-						<select
-							name="type"
-							onChange={handleChange}
-							disabled={!isEnableEdit}
-							className={`${isEnableEdit ? "" : "appearance-none"} px-2`}
-						>
-							<option value={type}>{type}</option>
-							{typeSelectOptionsElement}
-						</select>
-					</div>
-					<span
-						className={`flex items-center justify-center gap-1 ml-2 text-xs font-semibold tracking-wide text-white rounded-full ${
-							isDone ? "bg-green-300" : ""
+					<button
+						onClick={() => setToggleConfirmDelete((prev) => !prev)}
+						className={`flex items-center justify-center text-xl   rounded-md w-7 h-7 ${
+							toggleConfirmDelete
+								? "bg-gray-100 text-gray-400"
+								: "bg-red-300 text-white"
 						}`}
 					>
-						{isDone ? "done" : ""}
-					</span>
+						{toggleConfirmDelete ? <PiXLight /> : <PiTrashFill />}
+					</button>
 				</div>
-			</li>
-		</form>
+			</div>
+		</li>
 	);
 };
 
