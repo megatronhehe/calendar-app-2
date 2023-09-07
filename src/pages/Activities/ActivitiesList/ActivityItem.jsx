@@ -80,11 +80,11 @@ const ActivityItem = ({ activity }) => {
 	));
 
 	return (
-		<li className="flex w-full gap-2 p-1 text-gray-100 bg-gray-600 rounded-xl">
-			<div className="flex w-4/5 ">
+		<li className="flex w-full gap-2 p-2 text-gray-100 bg-gray-600 rounded-xl">
+			<div className="flex w-full">
 				<form
 					onSubmit={(e) => e.preventDefault()}
-					className="flex flex-col justify-between w-full"
+					className="flex flex-col justify-between w-full gap-1"
 				>
 					<button onClick={() => submitEditActivity(thisActivity)}></button>
 
@@ -170,14 +170,14 @@ const ActivityItem = ({ activity }) => {
 				</form>
 			</div>
 
-			<div className="flex flex-col items-end w-1/5 gap-2 border-l border-gray-500">
-				<div className="flex gap-1">
+			<div className="flex items-start justify-center gap-2 pl-2 border-l border-gray-500">
+				<div className="flex flex-col-reverse gap-1">
 					<AnimatePresence>
 						{isEnableEdit && (
 							<motion.button
-								initial={{ opacity: 0, x: 30 }}
-								animate={{ opacity: 1, x: 0 }}
-								exit={{ opacity: 0, x: 30 }}
+								initial={{ opacity: 0, y: -30 }}
+								animate={{ opacity: 1, y: 0 }}
+								exit={{ opacity: 0, y: -30 }}
 								disabled={isLoading.editing}
 								onClick={() => submitEditActivity(thisActivity)}
 								className="flex items-center justify-center text-2xl text-white bg-green-400 rounded-md w-7 h-7"
@@ -199,13 +199,13 @@ const ActivityItem = ({ activity }) => {
 					</button>
 				</div>
 
-				<div className="flex gap-1">
+				<div className="flex flex-col-reverse gap-1">
 					<AnimatePresence>
 						{toggleConfirmDelete && (
 							<motion.button
-								initial={{ opacity: 0, x: 30 }}
-								animate={{ opacity: 1, x: 0 }}
-								exit={{ opacity: 0, x: 30 }}
+								initial={{ opacity: 0, y: -30 }}
+								animate={{ opacity: 1, y: 0 }}
+								exit={{ opacity: 0, y: -30 }}
 								disabled={isLoading.deleting}
 								onClick={() => deleteActivity(id)}
 								className="flex items-center justify-center text-xl text-white bg-red-300 rounded-md w-7 h-7"
