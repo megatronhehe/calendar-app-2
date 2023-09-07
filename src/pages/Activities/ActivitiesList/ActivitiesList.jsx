@@ -12,6 +12,7 @@ import {
 	PiPlusLight,
 } from "react-icons/pi";
 import { isSameDay, parseISO } from "date-fns";
+import { AnimatePresence } from "framer-motion";
 
 const ActivitiesList = ({ setToggleModal }) => {
 	const { selectedDate } = useContext(DateContext);
@@ -60,16 +61,18 @@ const ActivitiesList = ({ setToggleModal }) => {
 			</section>
 
 			<section className="p-2 h-2/3 sm:bg-gray-900 sm:rounded-xl">
-				<ul className="flex flex-col h-full gap-2 overflow-auto text-gray-800 sm:h-96 ">
-					{isLoading.fetching ? (
-						<ExceptionMessage message={"Loading ..."} />
-					) : activitiesError.length > 0 ? (
-						<ExceptionMessage message={activitiesError} />
-					) : filteredActivitiesElement.length > 0 ? (
-						filteredActivitiesElement
-					) : (
-						<ExceptionMessage message={"No activities listed at this date"} />
-					)}
+				<ul className="flex flex-col h-full overflow-auto text-gray-800 sm:h-96 ">
+					<AnimatePresence>
+						{isLoading.fetching ? (
+							<ExceptionMessage message={"Loading ..."} />
+						) : activitiesError.length > 0 ? (
+							<ExceptionMessage message={activitiesError} />
+						) : filteredActivitiesElement.length > 0 ? (
+							filteredActivitiesElement
+						) : (
+							<ExceptionMessage message={"No activities listed at this date"} />
+						)}
+					</AnimatePresence>
 				</ul>
 			</section>
 		</>

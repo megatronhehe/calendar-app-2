@@ -1,14 +1,6 @@
 {
   "activities": [
     {
-      "id": "52837273-75a4-45d7-a8a0-b316f51a43d0",
-      "name": "add animations",
-      "date": "2023-09-07",
-      "priority": "normal",
-      "type": "solo project",
-      "isDone": false
-    },
-    {
       "id": "2f30adb5-8537-424e-9468-f6d6011021d2",
       "name": "learn backend",
       "date": "2023-09-07",
@@ -17,20 +9,12 @@
       "isDone": false
     },
     {
-      "id": "d0b9a2cf-fc88-49bd-9ce0-1dc49db4e427",
-      "name": "pushing",
+      "id": "6f396fd0-12b7-4669-994e-30cc68dbdef5",
+      "name": "test",
       "date": "2023-09-07",
-      "priority": "high",
+      "priority": "normal",
       "type": "workout",
-      "isDone": true
-    },
-    {
-      "id": "a2368652-85e8-4ed1-8970-190c70e97e40",
-      "name": "win a game of dota",
-      "date": "2023-09-07",
-      "priority": "low",
-      "type": "general",
-      "isDone": true
+      "isDone": false
     }
   ]
 }
