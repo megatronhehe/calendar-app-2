@@ -1,16 +1,19 @@
 import React, { useContext } from "react";
 
-import DateItem from "./dateItem";
+import DateItem from "./DateItem";
 
 import DateContext from "../../context/DateContext";
+
 import { addMonths, eachDayOfInterval, format, subMonths } from "date-fns";
 
 import { PiCaretLeftLight, PiCaretRightLight } from "react-icons/pi";
 
+import { motion } from "framer-motion";
+
 import { endOfMonth, startOfMonth, startOfWeek, endOfWeek } from "date-fns";
 
 const Calendar = () => {
-	const { today, setToday } = useContext(DateContext);
+	const { today, setToday, selectedDate } = useContext(DateContext);
 
 	const firstDateInMonth = startOfWeek(startOfMonth(today));
 	const lastDateInMonth = endOfWeek(endOfMonth(today));
@@ -33,11 +36,15 @@ const Calendar = () => {
 	));
 
 	return (
-		<div
+		<motion.div
+			initial={{ y: "-100vh" }}
+			animate={{ y: 0 }}
+			exit={{ y: "-100vh" }}
+			transition={{ type: "tween" }}
 			onClick={(e) => e.stopPropagation()}
-			className="flex flex-col w-full gap-4 overflow-hidden bg-white h-2/3 rounded-b-2xl sm:rounded-2xl sm:h-full sm:bg-gray-900 sm:text-white"
+			className="flex flex-col w-full gap-4 pb-20 overflow-hidden bg-white rounded-b-2xl sm:rounded-2xl sm:h-full sm:bg-gray-900 sm:text-white"
 		>
-			<div className="flex justify-between px-2 py-4">
+			<div className="flex justify-between px-2 py-4 ">
 				<div className="flex items-center justify-between w-40 gap-2">
 					<button onClick={prevMonth}>
 						<PiCaretLeftLight />
@@ -54,7 +61,7 @@ const Calendar = () => {
 			<div className="flex justify-center mt-3 sm:mt-0 ">
 				<ul className="grid grid-cols-7 gap-3 sm:gap-1">{datesElement}</ul>
 			</div>
-		</div>
+		</motion.div>
 	);
 };
 

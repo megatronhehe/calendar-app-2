@@ -62,9 +62,12 @@ const ActivitiesList = ({ setToggleModal }) => {
 
 			<section className="p-2 h-2/3 sm:bg-gray-900 sm:rounded-xl">
 				<ul className="flex flex-col h-full overflow-auto text-gray-800 sm:h-96 ">
-					<AnimatePresence>
+					<AnimatePresence mode="wait">
 						{isLoading.fetching ? (
-							<ExceptionMessage message={"Loading ..."} />
+							<ExceptionMessage
+								message={"Loading ..."}
+								fetching={isLoading.fetching}
+							/>
 						) : activitiesError.length > 0 ? (
 							<ExceptionMessage message={activitiesError} />
 						) : filteredActivitiesElement.length > 0 ? (

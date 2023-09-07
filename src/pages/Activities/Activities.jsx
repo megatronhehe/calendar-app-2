@@ -74,9 +74,11 @@ const Activities = () => {
 				</button>
 			)}
 
-			{toggleCalendar && (
-				<CalendarModal setToggleCalendar={setToggleCalendar} />
-			)}
+			<AnimatePresence>
+				{toggleCalendar && (
+					<CalendarModal setToggleCalendar={setToggleCalendar} />
+				)}
+			</AnimatePresence>
 		</>
 	);
 };

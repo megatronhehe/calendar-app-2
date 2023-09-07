@@ -40,7 +40,7 @@ const DateItem = ({ date }) => {
 		<li
 			key={date}
 			onClick={() => setSelectedDate(date)}
-			className={`relative text-sm flex items-center justify-center w-10 h-10 rounded-xl
+			className={`relative text-sm flex items-center justify-center w-10 h-10 rounded-xl duration-200
 		
 			${calendarItemStyle}
 			`}

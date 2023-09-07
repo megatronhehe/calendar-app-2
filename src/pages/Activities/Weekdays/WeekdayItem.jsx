@@ -6,6 +6,7 @@ import ActivitiesContext from "../../../context/ActivitiesContext";
 import { format, isToday, isSameDay, parseISO } from "date-fns";
 
 import { PiDiamondFill, PiCircleFill } from "react-icons/pi";
+import { AnimatePresence } from "framer-motion";
 
 const WeekdayItem = ({ date }) => {
 	const { selectedDate, setSelectedDate } = useContext(DateContext);
@@ -41,7 +42,7 @@ const WeekdayItem = ({ date }) => {
 		<li
 			onClick={() => setSelectedDate(date)}
 			key={date}
-			className={`relative w-full flex flex-col items-center gap-2 py-2 rounded-xl text-white 
+			className={`relative w-full flex flex-col items-center gap-2 py-2 rounded-xl text-white duration-200 cursor-pointer
             ${calendarItemStyle}
             `}
 		>
@@ -49,17 +50,17 @@ const WeekdayItem = ({ date }) => {
 			<span className="font-semibold">{format(date, "d")}</span>
 			{isActivitiesExistInThisDate ? (
 				isAllActivitiesDoneInThisDate ? (
-					<PiCircleFill className="absolute text-green-400 -bottom-2" />
+					<div className="absolute text-green-400 -bottom-2">
+						<PiCircleFill />
+					</div>
 				) : (
-					<PiDiamondFill className="absolute text-blue-400 -bottom-2" />
+					<div className="absolute text-blue-400 -bottom-2">
+						<PiDiamondFill />
+					</div>
 				)
 			) : null}
 		</li>
 	);
 };
-
-{
-	/* <PiDiamondFill className="absolute text-blue-400 -bottom-2" /> */
-}
 
 export default WeekdayItem;
