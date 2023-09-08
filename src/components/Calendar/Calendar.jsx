@@ -42,7 +42,7 @@ const Calendar = () => {
 			exit={{ y: "-100vh" }}
 			transition={{ type: "tween" }}
 			onClick={(e) => e.stopPropagation()}
-			className="flex flex-col w-full gap-4 pb-20 overflow-hidden bg-white rounded-b-2xl sm:rounded-2xl sm:h-full sm:bg-gray-900 sm:text-white"
+			className="flex flex-col w-full gap-4 pb-20 overflow-hidden bg-white rounded-b-2xl sm:rounded-2xl sm:h-full sm:pb-96 sm:bg-gray-900 sm:text-white"
 		>
 			<div className="flex justify-between px-2 py-4 ">
 				<div className="flex items-center justify-between w-40 gap-2">

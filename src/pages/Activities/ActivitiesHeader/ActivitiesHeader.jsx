@@ -1,4 +1,4 @@
-import { format, isSameDay, parseISO } from "date-fns";
+import { format, getHours, getTime, isSameDay, parseISO } from "date-fns";
 import React, { useContext } from "react";
 
 import DateContext from "../../../context/DateContext";
@@ -21,10 +21,20 @@ const ActivitiesHeader = () => {
 	const activitiesToDateExist = activitiesToDate.length > 0;
 	const activitiesToDateCount = activitiesToDate.length;
 
+	const time = getHours(new Date());
+	const getTimeOfDay =
+		time >= 5 && time < 12
+			? "morning"
+			: time >= 12 && time < 17
+			? "afternoon"
+			: time >= 17 && time < 20
+			? "evening"
+			: "night";
+
 	return (
 		<section className="flex flex-col justify-between h-full bg-white sm:rounded-2xl sm:h-2/5 ">
 			<div className="px-4 py-2">
-				<h1 className="text-2xl">Good morning</h1>
+				<h1 className="text-2xl">Good {getTimeOfDay}</h1>
 
 				<span className="text-sm">
 					{format(selectedDate, "eeee, d MMMM yyyy")}
