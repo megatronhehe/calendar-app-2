@@ -72,7 +72,7 @@ const ActivitiesContextProvider = ({ children }) => {
 			});
 	};
 
-	const markActivityDone = (id) => {
+	const toggleActivityDone = (id) => {
 		const thisActivity = activities.find((activity) => activity.id === id);
 
 		setIsLoading((prev) => ({ ...prev, marking: true }));
@@ -91,6 +91,60 @@ const ActivitiesContextProvider = ({ children }) => {
 							activity.id === id
 								? { ...activity, isDone: !activity.isDone }
 								: activity
+						)
+					);
+				}
+			})
+			.catch((err) => console.log(err))
+			.finally(() => {
+				setIsLoading((prev) => ({ ...prev, marking: false }));
+			});
+	};
+
+	const checkActivity = (id) => {
+		const thisActivity = activities.find((activity) => activity.id === id);
+
+		setIsLoading((prev) => ({ ...prev, marking: true }));
+
+		fetch(`http://localhost:8000/activities/${id}`, {
+			method: "PUT",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({ ...thisActivity, isDone: true }),
+		})
+			.then((res) => {
+				if (!res.ok) {
+					console.log(`${res.status} ${res.statusText}`);
+				} else {
+					setActivities((prev) =>
+						prev.map((activity) =>
+							activity.id === id ? { ...activity, isDone: true } : activity
+						)
+					);
+				}
+			})
+			.catch((err) => console.log(err))
+			.finally(() => {
+				setIsLoading((prev) => ({ ...prev, marking: false }));
+			});
+	};
+
+	const uncheckActivity = (id) => {
+		const thisActivity = activities.find((activity) => activity.id === id);
+
+		setIsLoading((prev) => ({ ...prev, marking: true }));
+
+		fetch(`http://localhost:8000/activities/${id}`, {
+			method: "PUT",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({ ...thisActivity, isDone: false }),
+		})
+			.then((res) => {
+				if (!res.ok) {
+					console.log(`${res.status} ${res.statusText}`);
+				} else {
+					setActivities((prev) =>
+						prev.map((activity) =>
+							activity.id === id ? { ...activity, isDone: false } : activity
 						)
 					);
 				}
@@ -139,8 +193,10 @@ const ActivitiesContextProvider = ({ children }) => {
 				setSelectedActivity,
 				addActivity,
 				deleteActivity,
-				markActivityDone,
+				toggleActivityDone,
 				submitEditActivity,
+				checkActivity,
+				uncheckActivity,
 			}}
 		>
 			{children}

@@ -1,3 +1,20 @@
 {
-  "activities": []
+  "activities": [
+    {
+      "id": "726264b0-3f66-44e9-9bca-4a7e1ec8d9ac",
+      "name": "pushing",
+      "date": "2023-09-10",
+      "priority": "high",
+      "type": "workout",
+      "isDone": false
+    },
+    {
+      "id": "8334e69b-f560-4abf-8009-fc217f879f2d",
+      "name": "win a game of dota",
+      "date": "2023-09-10",
+      "priority": "low",
+      "type": "general",
+      "isDone": false
+    }
+  ]
 }

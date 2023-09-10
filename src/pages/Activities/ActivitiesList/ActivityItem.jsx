@@ -17,14 +17,14 @@ import { AnimatePresence, motion } from "framer-motion";
 const ActivityItem = ({ activity }) => {
 	const {
 		deleteActivity,
-		markActivityDone,
+		toggleActivityDone,
 		isLoading,
 		selectedActivity,
 		setSelectedActivity,
 		submitEditActivity,
 	} = useContext(ActivitiesContext);
 
-	const { id, name, priority, type, isDone } = activity;
+	const { id, priority, type, isDone } = activity;
 
 	const [isEnableEdit, setIsEnableEdit] = useState(false);
 	const [toggleConfirmDelete, setToggleConfirmDelete] = useState(false);
@@ -97,7 +97,7 @@ const ActivityItem = ({ activity }) => {
 							<button
 								disabled={isLoading.marking && selectedActivity === id}
 								onClick={() => {
-									markActivityDone(id);
+									toggleActivityDone(id);
 									setSelectedActivity(id);
 								}}
 								className="text-2xl"

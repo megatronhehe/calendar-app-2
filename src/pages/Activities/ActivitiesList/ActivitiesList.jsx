@@ -1,23 +1,28 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import DateContext from "../../../context/DateContext";
 import ActivitiesContext from "../../../context/ActivitiesContext";
 
 import ActivityItem from "./ActivityItem";
 import ExceptionMessage from "../ExceptionMessage";
+import MoreDropdown from "./MoreDropdown";
 
-import {
-	PiSlidersLight,
-	PiDotsThreeVerticalLight,
-	PiPlusLight,
-} from "react-icons/pi";
+import { PiDotsThreeVerticalLight, PiPlusLight } from "react-icons/pi";
 import { isSameDay, parseISO } from "date-fns";
 import { AnimatePresence } from "framer-motion";
 
 const ActivitiesList = ({ setToggleModal }) => {
 	const { selectedDate } = useContext(DateContext);
-	const { activities, isActivitiesExist, isLoading, activitiesError } =
-		useContext(ActivitiesContext);
+	const {
+		activities,
+		isActivitiesExist,
+		isLoading,
+		activitiesError,
+		checkActivity,
+		uncheckActivity,
+	} = useContext(ActivitiesContext);
+
+	const [toggleMoreDropdown, setToggleMoreDropdown] = useState(false);
 
 	const filterActivitiesByDate = isActivitiesExist
 		? activities.filter((activity) =>
@@ -29,6 +34,14 @@ const ActivitiesList = ({ setToggleModal }) => {
 		<ActivityItem key={activity.id} activity={activity} />
 	));
 
+	const checkAllActivities = (activities) => {
+		return activities.map((activity) => checkActivity(activity.id));
+	};
+
+	const uncheckAllActivities = (activities) => {
+		return activities.map((activity) => uncheckActivity(activity.id));
+	};
+
 	return (
 		<>
 			<section className="p-2 text-gray-100 sm:bg-gray-900 sm:rounded-xl">
@@ -37,31 +50,42 @@ const ActivitiesList = ({ setToggleModal }) => {
 
 					<ul className="flex gap-2 text-2xl">
 						<li>
-							<button className="flex items-center justify-center w-8 h-8 bg-gray-900 rounded-md">
-								<PiSlidersLight />
-							</button>
-						</li>
-
-						<li>
 							<button
 								onClick={() => setToggleModal(true)}
-								className="flex items-center justify-center w-8 h-8 bg-gray-900 rounded-md"
+								className="flex items-center justify-center w-8 h-8 bg-gray-900 rounded-md sm:bg-gray-800 hover:bg-gray-600"
 							>
 								<PiPlusLight />
 							</button>
 						</li>
 
-						<li>
-							<button className="flex items-center justify-center w-8 h-8 bg-gray-900 rounded-md">
+						<li className="relative ">
+							<button
+								onClick={() => setToggleMoreDropdown((prev) => !prev)}
+								className={`flex items-center justify-center w-8 h-8 rounded-md hover:bg-gray-600
+								${toggleMoreDropdown ? "bg-gray-600" : "bg-gray-900 sm:bg-gray-800"}
+								`}
+							>
 								<PiDotsThreeVerticalLight />
 							</button>
+							<AnimatePresence>
+								{toggleMoreDropdown && (
+									<MoreDropdown
+										checkAllActivities={() =>
+											checkAllActivities(filterActivitiesByDate)
+										}
+										uncheckAllActivities={() =>
+											uncheckAllActivities(filterActivitiesByDate)
+										}
+									/>
+								)}
+							</AnimatePresence>
 						</li>
 					</ul>
 				</div>
 			</section>
 
 			<section className="p-2 h-2/3 sm:bg-gray-900 sm:rounded-xl">
-				<ul className="flex flex-col h-full overflow-auto text-gray-800 sm:h-96 ">
+				<ul className="flex flex-col h-full overflow-auto text-gray-800 sm:h-96">
 					<AnimatePresence mode="wait">
 						{isLoading.fetching ? (
 							<ExceptionMessage
@@ -70,10 +94,16 @@ const ActivitiesList = ({ setToggleModal }) => {
 							/>
 						) : activitiesError.length > 0 ? (
 							<ExceptionMessage message={activitiesError} />
-						) : filteredActivitiesElement.length > 0 ? (
-							filteredActivitiesElement
 						) : (
-							<ExceptionMessage message={"No activities listed at this date"} />
+							<AnimatePresence mode="wait">
+								{filteredActivitiesElement.length > 0 ? (
+									filteredActivitiesElement
+								) : (
+									<ExceptionMessage
+										message={"No activities listed at this date"}
+									/>
+								)}
+							</AnimatePresence>
 						)}
 					</AnimatePresence>
 				</ul>
