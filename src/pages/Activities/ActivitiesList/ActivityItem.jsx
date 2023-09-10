@@ -80,7 +80,7 @@ const ActivityItem = ({ activity }) => {
 	));
 
 	return (
-		<motion.li
+		<li
 			initial={{ opacity: 0, height: 0 }}
 			animate={{ opacity: 1, height: "auto" }}
 			exit={{ opacity: 0, height: 0 }}
@@ -102,7 +102,8 @@ const ActivityItem = ({ activity }) => {
 								}}
 								className="text-2xl"
 							>
-								{isLoading.marking && selectedActivity === id ? (
+								{(isLoading.marking && selectedActivity === id) ||
+								(isLoading.marking && selectedActivity === "all") ? (
 									<PiCircleDashedLight className="animate-spin" />
 								) : isDone ? (
 									<PiCheckSquareFill className="text-green-400" />
@@ -247,7 +248,7 @@ const ActivityItem = ({ activity }) => {
 					</div>
 				</div>
 			</div>
-		</motion.li>
+		</li>
 	);
 };
 

@@ -20,6 +20,7 @@ const ActivitiesList = ({ setToggleModal }) => {
 		activitiesError,
 		checkActivity,
 		uncheckActivity,
+		setSelectedActivity,
 	} = useContext(ActivitiesContext);
 
 	const [toggleMoreDropdown, setToggleMoreDropdown] = useState(false);
@@ -67,6 +68,7 @@ const ActivitiesList = ({ setToggleModal }) => {
 							>
 								<PiDotsThreeVerticalLight />
 							</button>
+
 							<AnimatePresence>
 								{toggleMoreDropdown && (
 									<MoreDropdown
@@ -76,6 +78,8 @@ const ActivitiesList = ({ setToggleModal }) => {
 										uncheckAllActivities={() =>
 											uncheckAllActivities(filterActivitiesByDate)
 										}
+										setSelectedActivity={setSelectedActivity}
+										isLoading={isLoading}
 									/>
 								)}
 							</AnimatePresence>
@@ -85,7 +89,7 @@ const ActivitiesList = ({ setToggleModal }) => {
 			</section>
 
 			<section className="p-2 h-2/3 sm:bg-gray-900 sm:rounded-xl">
-				<ul className="flex flex-col h-full overflow-auto text-gray-800 sm:h-96">
+				<ul className="flex flex-col h-full overflow-auto text-gray-800 sm:h-96 ">
 					<AnimatePresence mode="wait">
 						{isLoading.fetching ? (
 							<ExceptionMessage
@@ -94,16 +98,10 @@ const ActivitiesList = ({ setToggleModal }) => {
 							/>
 						) : activitiesError.length > 0 ? (
 							<ExceptionMessage message={activitiesError} />
+						) : filteredActivitiesElement.length > 0 ? (
+							filteredActivitiesElement
 						) : (
-							<AnimatePresence mode="wait">
-								{filteredActivitiesElement.length > 0 ? (
-									filteredActivitiesElement
-								) : (
-									<ExceptionMessage
-										message={"No activities listed at this date"}
-									/>
-								)}
-							</AnimatePresence>
+							<ExceptionMessage message={"No activities listed at this date"} />
 						)}
 					</AnimatePresence>
 				</ul>
@@ -111,4 +109,45 @@ const ActivitiesList = ({ setToggleModal }) => {
 		</>
 	);
 };
+
+{
+	/* <ul className="flex flex-col h-full overflow-auto text-gray-800 sm:h-96 ">
+					<AnimatePresence>
+						{isLoading.fetching ? (
+							<ExceptionMessage
+								message={"Loading ..."}
+								fetching={isLoading.fetching}
+							/>
+						) : activitiesError.length > 0 ? (
+							<ExceptionMessage message={activitiesError} />
+						) : filteredActivitiesElement.length > 0 ? (
+							<AnimatePresence mode="wait">
+								{filteredActivitiesElement}
+							</AnimatePresence>
+						) : (
+							<ExceptionMessage message={"No activities listed at this date"} />
+						)}
+					</AnimatePresence>
+				</ul> */
+}
+
+{
+	/* <ul className="flex flex-col h-full overflow-auto text-gray-800 sm:h-96 ">
+					<AnimatePresence mode="wait">
+						{isLoading.fetching ? (
+							<ExceptionMessage
+								message={"Loading ..."}
+								fetching={isLoading.fetching}
+							/>
+						) : activitiesError.length > 0 ? (
+							<ExceptionMessage message={activitiesError} />
+						) : filteredActivitiesElement.length > 0 ? (
+							filteredActivitiesElement
+						) : (
+							<ExceptionMessage message={"No activities listed at this date"} />
+						)}
+					</AnimatePresence>
+				</ul>
+				 */
+}
 export default ActivitiesList;

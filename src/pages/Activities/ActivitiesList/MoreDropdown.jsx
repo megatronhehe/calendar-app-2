@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { PiCheckLight, PiXLight } from "react-icons/pi";
+import { PiCheckLight, PiXLight, PiCircleDashedLight } from "react-icons/pi";
 
 import { motion } from "framer-motion";
 
-const MoreDropdown = ({ checkAllActivities, uncheckAllActivities }) => {
+const MoreDropdown = ({
+	checkAllActivities,
+	uncheckAllActivities,
+	setSelectedActivity,
+	isLoading,
+}) => {
+	const [selectedOption, setSelectedOption] = useState("");
+
 	return (
 		<motion.ul
 			initial={{ opacity: 0, y: -10 }}
@@ -14,20 +21,42 @@ const MoreDropdown = ({ checkAllActivities, uncheckAllActivities }) => {
 		>
 			<li className="w-full">
 				<button
-					onClick={checkAllActivities}
+					disabled={isLoading.marking}
+					onClick={() => {
+						checkAllActivities();
+						setSelectedActivity("all");
+						setSelectedOption("check");
+					}}
 					className="flex items-center justify-between w-full px-2 py-1 bg-gray-700 rounded-md"
 				>
-					check all
-					<PiCheckLight />
+					{isLoading.marking && selectedOption === "check" ? (
+						<PiCircleDashedLight className="flex justify-center w-full text-xl animate-spin" />
+					) : (
+						<>
+							check all
+							<PiCheckLight />
+						</>
+					)}
 				</button>
 			</li>
 			<li className="w-full">
 				<button
-					onClick={uncheckAllActivities}
+					disabled={isLoading.marking}
+					onClick={() => {
+						uncheckAllActivities();
+						setSelectedActivity("all");
+						setSelectedOption("uncheck");
+					}}
 					className="flex items-center justify-between w-full px-2 py-1 bg-gray-700 rounded-md"
 				>
-					uncheck all
-					<PiXLight />
+					{isLoading.marking && selectedOption === "uncheck" ? (
+						<PiCircleDashedLight className="flex justify-center w-full text-xl animate-spin" />
+					) : (
+						<>
+							uncheck all
+							<PiXLight />
+						</>
+					)}
 				</button>
 			</li>
 		</motion.ul>

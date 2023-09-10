@@ -1,19 +1,19 @@
 {
   "activities": [
     {
-      "id": "726264b0-3f66-44e9-9bca-4a7e1ec8d9ac",
-      "name": "pushing",
+      "id": "9f3a9896-b528-4043-8015-b9ad3b45915f",
+      "name": "test",
       "date": "2023-09-10",
       "priority": "high",
-      "type": "workout",
+      "type": "hustle",
       "isDone": false
     },
     {
-      "id": "8334e69b-f560-4abf-8009-fc217f879f2d",
-      "name": "win a game of dota",
-      "date": "2023-09-10",
-      "priority": "low",
-      "type": "general",
+      "id": "451a4f64-2332-46a4-ba5a-6a7bd60ff425",
+      "name": "workout",
+      "date": "2023-09-11",
+      "priority": "normal",
+      "type": "hustle",
       "isDone": false
     }
   ]
