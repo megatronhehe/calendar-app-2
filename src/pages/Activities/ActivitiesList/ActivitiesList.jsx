@@ -9,7 +9,7 @@ import MoreDropdown from "./MoreDropdown";
 
 import { PiDotsThreeVerticalLight, PiPlusLight } from "react-icons/pi";
 import { isSameDay, parseISO } from "date-fns";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 const ActivitiesList = ({ setToggleModal }) => {
 	const { selectedDate } = useContext(DateContext);
@@ -99,7 +99,13 @@ const ActivitiesList = ({ setToggleModal }) => {
 						) : activitiesError.length > 0 ? (
 							<ExceptionMessage message={activitiesError} />
 						) : filteredActivitiesElement.length > 0 ? (
-							filteredActivitiesElement
+							<motion.div
+								initial={{ opacity: 0 }}
+								animate={{ opacity: 1 }}
+								exit={{ opacity: 0 }}
+							>
+								{filteredActivitiesElement}
+							</motion.div>
 						) : (
 							<ExceptionMessage message={"No activities listed at this date"} />
 						)}
@@ -110,44 +116,16 @@ const ActivitiesList = ({ setToggleModal }) => {
 	);
 };
 
-{
-	/* <ul className="flex flex-col h-full overflow-auto text-gray-800 sm:h-96 ">
-					<AnimatePresence>
-						{isLoading.fetching ? (
-							<ExceptionMessage
-								message={"Loading ..."}
-								fetching={isLoading.fetching}
-							/>
-						) : activitiesError.length > 0 ? (
-							<ExceptionMessage message={activitiesError} />
-						) : filteredActivitiesElement.length > 0 ? (
-							<AnimatePresence mode="wait">
-								{filteredActivitiesElement}
-							</AnimatePresence>
-						) : (
-							<ExceptionMessage message={"No activities listed at this date"} />
-						)}
-					</AnimatePresence>
-				</ul> */
-}
+// {
+// 	isLoading.fetching ? (
+// 		<ExceptionMessage message={"Loading ..."} fetching={isLoading.fetching} />
+// 	) : activitiesError.length > 0 ? (
+// 		<ExceptionMessage message={activitiesError} />
+// 	) : filteredActivitiesElement.length > 0 ? (
+// 		<AnimatePresence>{filteredActivitiesElement}</AnimatePresence>
+// 	) : (
+// 		<ExceptionMessage message={"No activities listed at this date"} />
+// 	);
+// }
 
-{
-	/* <ul className="flex flex-col h-full overflow-auto text-gray-800 sm:h-96 ">
-					<AnimatePresence mode="wait">
-						{isLoading.fetching ? (
-							<ExceptionMessage
-								message={"Loading ..."}
-								fetching={isLoading.fetching}
-							/>
-						) : activitiesError.length > 0 ? (
-							<ExceptionMessage message={activitiesError} />
-						) : filteredActivitiesElement.length > 0 ? (
-							filteredActivitiesElement
-						) : (
-							<ExceptionMessage message={"No activities listed at this date"} />
-						)}
-					</AnimatePresence>
-				</ul>
-				 */
-}
 export default ActivitiesList;

@@ -1,19 +1,27 @@
 {
   "activities": [
     {
-      "id": "9f3a9896-b528-4043-8015-b9ad3b45915f",
+      "id": "8eb7c8dd-9515-4fb8-9751-b8223c27a934",
       "name": "test",
       "date": "2023-09-10",
       "priority": "high",
-      "type": "hustle",
+      "type": "work",
       "isDone": false
     },
     {
-      "id": "451a4f64-2332-46a4-ba5a-6a7bd60ff425",
-      "name": "workout",
+      "id": "300624ba-c1e0-4329-a1b8-f6f844141f7f",
+      "name": "test",
+      "date": "2023-09-10",
+      "priority": "high",
+      "type": "work",
+      "isDone": false
+    },
+    {
+      "id": "cd0813bd-2a74-4f6f-aca6-6de331b2061d",
+      "name": "test",
       "date": "2023-09-11",
-      "priority": "normal",
-      "type": "hustle",
+      "priority": "high",
+      "type": "work",
       "isDone": false
     }
   ]

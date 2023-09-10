@@ -80,10 +80,10 @@ const ActivityItem = ({ activity }) => {
 	));
 
 	return (
-		<li
-			initial={{ opacity: 0, height: 0 }}
-			animate={{ opacity: 1, height: "auto" }}
-			exit={{ opacity: 0, height: 0 }}
+		<motion.li
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
 		>
 			<div className="flex w-full gap-2 p-2 mb-2 text-gray-100 bg-gray-600 rounded-xl">
 				<div className="flex w-full">
@@ -248,7 +248,7 @@ const ActivityItem = ({ activity }) => {
 					</div>
 				</div>
 			</div>
-		</li>
+		</motion.li>
 	);
 };
 
